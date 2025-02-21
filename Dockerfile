@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM golang:alpine as base
 COPY httpenv.go /go
 RUN go build httpenv.go
 
@@ -10,3 +10,6 @@ EXPOSE 8888
 # we're not changing user in this example, but you could:
 # USER httpenv
 CMD ["/httpenv"]
+
+#########################
+FROM base as test
